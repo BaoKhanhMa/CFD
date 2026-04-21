@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CFD.dir/src/diffusion.cpp.o.d"
   "CMakeFiles/CFD.dir/src/mesh.cpp.o"
   "CMakeFiles/CFD.dir/src/mesh.cpp.o.d"
+  "CMakeFiles/CFD.dir/src/solver.cpp.o"
+  "CMakeFiles/CFD.dir/src/solver.cpp.o.d"
   "CMakeFiles/CFD.dir/src/vtk_writer.cpp.o"
   "CMakeFiles/CFD.dir/src/vtk_writer.cpp.o.d"
   "libCFD.a"

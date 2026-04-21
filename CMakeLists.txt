@@ -10,14 +10,17 @@ add_library(CFD
     src/mesh.cpp
     src/diffusion.cpp
     src/vtk_writer.cpp
+    src/solver.cpp
 )
 
 # Add include/ to the header search path for library target CFD
 # PUBLIC: The library itself can use these headers. Anything links to CFD also inherits this path
 target_include_directories(CFD PUBLIC include)
 
-# Create an executable named diffusion3d
+# Create an executable named diffusion3d for testing
 add_executable(diffusion3d apps/diffusion3d_main.cpp)
-# Link this executable against the CFD library
-# PRIVATE: Only diffusion3d needs this link dependency
 target_link_libraries(diffusion3d PRIVATE CFD)
+
+# Create an executable named diffusion3d for simulation
+add_executable(lid_driven_cavity3d apps/lid_driven_cavity3d.cpp)
+target_link_libraries(lid_driven_cavity3d PRIVATE CFD)

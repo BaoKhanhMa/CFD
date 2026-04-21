@@ -30,8 +30,8 @@ std::size_t Mesh::index(std:: size_t i, std:: size_t j, std:: size_t k) const
 std::array<std::size_t, 3> Mesh::logical_index(std::size_t c) const
 {
     const std::size_t k = c / (nx_ * ny_);
-    const std::size_t rem = c & (nx_ * ny_);
-    const std::size_t j = rem % nx_;
+    const std::size_t rem = c % (nx_ * ny_);
+    const std::size_t j = rem / nx_;
     const std::size_t i = rem % nx_;
     return {i, j, k};
 }
