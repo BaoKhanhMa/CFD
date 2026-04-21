@@ -3,6 +3,7 @@
 
 CMakeFiles/CFD.dir/src/diffusion.cpp.o
  /home/khanhma/CFD/src/diffusion.cpp
+ /home/khanhma/CFD/include/diffusion.hpp
  /home/khanhma/CFD/include/mesh.hpp
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h

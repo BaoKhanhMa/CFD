@@ -8,10 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/khanhma/CFD/src/diffusion.cpp" "CMakeFiles/CFD.dir/src/diffusion.cpp.o" "gcc" "CMakeFiles/CFD.dir/src/diffusion.cpp.o.d"
-  "/home/khanhma/CFD/src/mesh.cpp" "CMakeFiles/CFD.dir/src/mesh.cpp.o" "gcc" "CMakeFiles/CFD.dir/src/mesh.cpp.o.d"
-  "/home/khanhma/CFD/src/solver.cpp" "CMakeFiles/CFD.dir/src/solver.cpp.o" "gcc" "CMakeFiles/CFD.dir/src/solver.cpp.o.d"
-  "/home/khanhma/CFD/src/vtk_writer.cpp" "CMakeFiles/CFD.dir/src/vtk_writer.cpp.o" "gcc" "CMakeFiles/CFD.dir/src/vtk_writer.cpp.o.d"
+  "/home/khanhma/CFD/apps/lid_driven_cavity3d.cpp" "CMakeFiles/lid_driven_cavity3d.dir/apps/lid_driven_cavity3d.cpp.o" "gcc" "CMakeFiles/lid_driven_cavity3d.dir/apps/lid_driven_cavity3d.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

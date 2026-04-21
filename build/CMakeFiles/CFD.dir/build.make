@@ -111,11 +111,26 @@ CMakeFiles/CFD.dir/src/vtk_writer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFD.dir/src/vtk_writer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/khanhma/CFD/src/vtk_writer.cpp -o CMakeFiles/CFD.dir/src/vtk_writer.cpp.s
 
+CMakeFiles/CFD.dir/src/solver.cpp.o: CMakeFiles/CFD.dir/flags.make
+CMakeFiles/CFD.dir/src/solver.cpp.o: /home/khanhma/CFD/src/solver.cpp
+CMakeFiles/CFD.dir/src/solver.cpp.o: CMakeFiles/CFD.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/khanhma/CFD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CFD.dir/src/solver.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CFD.dir/src/solver.cpp.o -MF CMakeFiles/CFD.dir/src/solver.cpp.o.d -o CMakeFiles/CFD.dir/src/solver.cpp.o -c /home/khanhma/CFD/src/solver.cpp
+
+CMakeFiles/CFD.dir/src/solver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CFD.dir/src/solver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/khanhma/CFD/src/solver.cpp > CMakeFiles/CFD.dir/src/solver.cpp.i
+
+CMakeFiles/CFD.dir/src/solver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CFD.dir/src/solver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/khanhma/CFD/src/solver.cpp -o CMakeFiles/CFD.dir/src/solver.cpp.s
+
 # Object files for target CFD
 CFD_OBJECTS = \
 "CMakeFiles/CFD.dir/src/mesh.cpp.o" \
 "CMakeFiles/CFD.dir/src/diffusion.cpp.o" \
-"CMakeFiles/CFD.dir/src/vtk_writer.cpp.o"
+"CMakeFiles/CFD.dir/src/vtk_writer.cpp.o" \
+"CMakeFiles/CFD.dir/src/solver.cpp.o"
 
 # External object files for target CFD
 CFD_EXTERNAL_OBJECTS =
@@ -123,9 +138,10 @@ CFD_EXTERNAL_OBJECTS =
 libCFD.a: CMakeFiles/CFD.dir/src/mesh.cpp.o
 libCFD.a: CMakeFiles/CFD.dir/src/diffusion.cpp.o
 libCFD.a: CMakeFiles/CFD.dir/src/vtk_writer.cpp.o
+libCFD.a: CMakeFiles/CFD.dir/src/solver.cpp.o
 libCFD.a: CMakeFiles/CFD.dir/build.make
 libCFD.a: CMakeFiles/CFD.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/khanhma/CFD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libCFD.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/khanhma/CFD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libCFD.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CFD.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CFD.dir/link.txt --verbose=$(VERBOSE)
 

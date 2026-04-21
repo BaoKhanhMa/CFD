@@ -142,6 +142,19 @@ diffusion3d/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffusion3d.dir/build.make CMakeFiles/diffusion3d.dir/build
 .PHONY : diffusion3d/fast
 
+#=============================================================================
+# Target rules for targets named lid_driven_cavity3d
+
+# Build rule for target.
+lid_driven_cavity3d: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lid_driven_cavity3d
+.PHONY : lid_driven_cavity3d
+
+# fast build rule for target.
+lid_driven_cavity3d/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lid_driven_cavity3d.dir/build.make CMakeFiles/lid_driven_cavity3d.dir/build
+.PHONY : lid_driven_cavity3d/fast
+
 apps/diffusion3d_main.o: apps/diffusion3d_main.cpp.o
 .PHONY : apps/diffusion3d_main.o
 
@@ -165,6 +178,30 @@ apps/diffusion3d_main.s: apps/diffusion3d_main.cpp.s
 apps/diffusion3d_main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/diffusion3d.dir/build.make CMakeFiles/diffusion3d.dir/apps/diffusion3d_main.cpp.s
 .PHONY : apps/diffusion3d_main.cpp.s
+
+apps/lid_driven_cavity3d.o: apps/lid_driven_cavity3d.cpp.o
+.PHONY : apps/lid_driven_cavity3d.o
+
+# target to build an object file
+apps/lid_driven_cavity3d.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lid_driven_cavity3d.dir/build.make CMakeFiles/lid_driven_cavity3d.dir/apps/lid_driven_cavity3d.cpp.o
+.PHONY : apps/lid_driven_cavity3d.cpp.o
+
+apps/lid_driven_cavity3d.i: apps/lid_driven_cavity3d.cpp.i
+.PHONY : apps/lid_driven_cavity3d.i
+
+# target to preprocess a source file
+apps/lid_driven_cavity3d.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lid_driven_cavity3d.dir/build.make CMakeFiles/lid_driven_cavity3d.dir/apps/lid_driven_cavity3d.cpp.i
+.PHONY : apps/lid_driven_cavity3d.cpp.i
+
+apps/lid_driven_cavity3d.s: apps/lid_driven_cavity3d.cpp.s
+.PHONY : apps/lid_driven_cavity3d.s
+
+# target to generate assembly for a file
+apps/lid_driven_cavity3d.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lid_driven_cavity3d.dir/build.make CMakeFiles/lid_driven_cavity3d.dir/apps/lid_driven_cavity3d.cpp.s
+.PHONY : apps/lid_driven_cavity3d.cpp.s
 
 src/diffusion.o: src/diffusion.cpp.o
 .PHONY : src/diffusion.o
@@ -214,6 +251,30 @@ src/mesh.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFD.dir/build.make CMakeFiles/CFD.dir/src/mesh.cpp.s
 .PHONY : src/mesh.cpp.s
 
+src/solver.o: src/solver.cpp.o
+.PHONY : src/solver.o
+
+# target to build an object file
+src/solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFD.dir/build.make CMakeFiles/CFD.dir/src/solver.cpp.o
+.PHONY : src/solver.cpp.o
+
+src/solver.i: src/solver.cpp.i
+.PHONY : src/solver.i
+
+# target to preprocess a source file
+src/solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFD.dir/build.make CMakeFiles/CFD.dir/src/solver.cpp.i
+.PHONY : src/solver.cpp.i
+
+src/solver.s: src/solver.cpp.s
+.PHONY : src/solver.s
+
+# target to generate assembly for a file
+src/solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CFD.dir/build.make CMakeFiles/CFD.dir/src/solver.cpp.s
+.PHONY : src/solver.cpp.s
+
 src/vtk_writer.o: src/vtk_writer.cpp.o
 .PHONY : src/vtk_writer.o
 
@@ -248,15 +309,22 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... CFD"
 	@echo "... diffusion3d"
+	@echo "... lid_driven_cavity3d"
 	@echo "... apps/diffusion3d_main.o"
 	@echo "... apps/diffusion3d_main.i"
 	@echo "... apps/diffusion3d_main.s"
+	@echo "... apps/lid_driven_cavity3d.o"
+	@echo "... apps/lid_driven_cavity3d.i"
+	@echo "... apps/lid_driven_cavity3d.s"
 	@echo "... src/diffusion.o"
 	@echo "... src/diffusion.i"
 	@echo "... src/diffusion.s"
 	@echo "... src/mesh.o"
 	@echo "... src/mesh.i"
 	@echo "... src/mesh.s"
+	@echo "... src/solver.o"
+	@echo "... src/solver.i"
+	@echo "... src/solver.s"
 	@echo "... src/vtk_writer.o"
 	@echo "... src/vtk_writer.i"
 	@echo "... src/vtk_writer.s"
