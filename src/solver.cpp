@@ -46,6 +46,81 @@ static double laplacian(const Field3D& f, const Mesh& mesh,
          + (zp - 2.0*xc + zm)/dz2;
 }
 
+static double ddx_upwind(double phi_c, double phi_m, double phi_p, double vel, double dx)
+{
+    return (vel >= 0.0) ? (phi_c - phi_m) / dx
+                        : (phi_p - phi_c) / dx;
+}
+
+static double advection_u(const FlowState& s, const Mesh& mesh,
+                          std::size_t i, std::size_t j, std::size_t k)
+{
+    const double uc = s.u(i,j,k);
+    const double vc = s.v(i,j,k);
+    const double wc = s.w(i,j,k);
+
+    const double um = (i > 0) ? s.u(i-1,j,k) : uc;
+    const double up = (i+1 < mesh.nx()) ? s.u(i+1,j,k) : uc;
+
+    const double us = (j > 0) ? s.u(i,j-1,k) : uc;
+    const double un = (j+1 < mesh.ny()) ? s.u(i,j+1,k) : uc;
+
+    const double ub = (k > 0) ? s.u(i,j,k-1) : uc;
+    const double ut = (k+1 < mesh.nz()) ? s.u(i,j,k+1) : uc;
+
+    const double du_dx = ddx_upwind(uc, um, up, uc, mesh.dx());
+    const double du_dy = ddx_upwind(uc, us, un, vc, mesh.dy());
+    const double du_dz = ddx_upwind(uc, ub, ut, wc, mesh.dz());
+
+    return uc * du_dx + vc * du_dy + wc * du_dz;
+}
+
+static double advection_v(const FlowState& s, const Mesh& mesh,
+                          std::size_t i, std::size_t j, std::size_t k)
+{
+    const double uc = s.u(i,j,k);
+    const double vc = s.v(i,j,k);
+    const double wc = s.w(i,j,k);
+
+    const double vm = (i > 0) ? s.v(i-1,j,k) : vc;
+    const double vp = (i+1 < mesh.nx()) ? s.v(i+1,j,k) : vc;
+
+    const double vs = (j > 0) ? s.v(i,j-1,k) : vc;
+    const double vn = (j+1 < mesh.ny()) ? s.v(i,j+1,k) : vc;
+
+    const double vb = (k > 0) ? s.v(i,j,k-1) : vc;
+    const double vt = (k+1 < mesh.nz()) ? s.v(i,j,k+1) : vc;
+
+    const double dv_dx = ddx_upwind(vc, vm, vp, uc, mesh.dx());
+    const double dv_dy = ddx_upwind(vc, vs, vn, vc, mesh.dy());
+    const double dv_dz = ddx_upwind(vc, vb, vt, wc, mesh.dz());
+
+    return uc * dv_dx + vc * dv_dy + wc * dv_dz;
+}
+
+static double advection_w(const FlowState& s, const Mesh& mesh,
+                          std::size_t i, std::size_t j, std::size_t k)
+{
+    const double uc = s.u(i,j,k);
+    const double vc = s.v(i,j,k);
+    const double wc = s.w(i,j,k);
+
+    const double wm = (i > 0) ? s.w(i-1,j,k) : wc;
+    const double wp = (i+1 < mesh.nx()) ? s.w(i+1,j,k) : wc;
+
+    const double ws = (j > 0) ? s.w(i,j-1,k) : wc;
+    const double wn = (j+1 < mesh.ny()) ? s.w(i,j+1,k) : wc;
+
+    const double wb = (k > 0) ? s.w(i,j,k-1) : wc;
+    const double wt = (k+1 < mesh.nz()) ? s.w(i,j,k+1) : wc;
+
+    const double dw_dx = ddx_upwind(wc, wm, wp, uc, mesh.dx());
+    const double dw_dy = ddx_upwind(wc, ws, wn, vc, mesh.dy());
+    const double dw_dz = ddx_upwind(wc, wb, wt, wc, mesh.dz());
+
+    return uc * dw_dx + vc * dw_dy + wc * dw_dz;
+}
+
 static double divergence(const FlowState& s, const Mesh& mesh,
                          std::size_t i, std::size_t j, std::size_t k) {
     const double um = (i > 0) ? s.u(i-1,j,k) : s.u(i,j,k);
@@ -93,7 +168,7 @@ static void pressure_poisson(const Mesh& mesh, const SolverSettings& cfg,
                 }
             }
         }
-        
+
         p.data().swap(p_new.data());
     }
 }
@@ -104,9 +179,9 @@ void advance_one_step(const Mesh& mesh, const SolverSettings& cfg, FlowState& s)
     for (std::size_t k = 0; k < mesh.nz(); ++k) {
         for (std::size_t j = 0; j < mesh.ny(); ++j) {
             for (std::size_t i = 0; i < mesh.nx(); ++i) {
-                star.u(i,j,k) = s.u(i,j,k) + cfg.dt * cfg.nu * laplacian(s.u, mesh, i,j,k);
-                star.v(i,j,k) = s.v(i,j,k) + cfg.dt * cfg.nu * laplacian(s.v, mesh, i,j,k);
-                star.w(i,j,k) = s.w(i,j,k) + cfg.dt * cfg.nu * laplacian(s.w, mesh, i,j,k);
+                star.u(i,j,k) = s.u(i,j,k) + cfg.dt * (-advection_u(s, mesh, i, j, k) + cfg.nu * laplacian(s.u, mesh, i, j, k));
+                star.v(i,j,k) = s.v(i,j,k) + cfg.dt * (-advection_v(s, mesh, i, j, k) + cfg.nu * laplacian(s.v, mesh, i, j, k));
+                star.w(i,j,k) = s.w(i,j,k) + cfg.dt * (-advection_w(s, mesh, i, j, k) + cfg.nu * laplacian(s.w, mesh, i, j, k));
             }
         }
     }

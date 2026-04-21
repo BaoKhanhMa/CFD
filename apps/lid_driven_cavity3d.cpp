@@ -15,7 +15,7 @@ int main(){
 
     apply_lid_driven_cavity_bc(mesh, s);
 
-    for(int step = 0; step < 500; step++){
+    for(int step = 0; step < 5000; step++){
         advance_one_step(mesh, cfg, s);
 
         if(step % 20 == 0){
