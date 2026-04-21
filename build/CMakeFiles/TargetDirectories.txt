@@ -1,0 +1,4 @@
+/home/khanhma/CFD/build/CMakeFiles/CFD.dir
+/home/khanhma/CFD/build/CMakeFiles/diffusion3d.dir
+/home/khanhma/CFD/build/CMakeFiles/edit_cache.dir
+/home/khanhma/CFD/build/CMakeFiles/rebuild_cache.dir
