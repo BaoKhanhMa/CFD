@@ -9,7 +9,7 @@
 
 int main()
 {
-    Mesh mesh(24, 24, 24, 1.0, 1.0, 1.0);
+    Mesh mesh(16, 16, 16, 1.0, 1.0, 1.0);
 
     FlowState s(mesh);
 
@@ -17,13 +17,13 @@ int main()
     cfg.dt = 1e-3;
     cfg.rho = 1.0;
     cfg.nu = 1e-2;
-    cfg.pressure_iters = 100;
+    cfg.pressure_iters = 30;
 
     apply_lid_driven_cavity_bc(mesh, s);
 
-    write_vtk("cavity_0000.vtk", mesh, s);
+    write_csv_frame("cavity_0000.csv", mesh, s);
 
-    for (int step = 1; step <= 5000; ++step) {
+    for (int step = 1; step <= 2000; ++step) {
         advance_one_step(mesh, cfg, s);
 
         if (step % 20 == 0) {
@@ -34,8 +34,8 @@ int main()
 
         if (step % 100 == 0) {
             std::ostringstream name;
-            name << "cavity_" << std::setw(4) << std::setfill('0') << step << ".vtk";
-            write_vtk(name.str(), mesh, s);
+            name << "cavity_" << std::setw(4) << std::setfill('0') << step << ".csv";
+            write_csv_frame(name.str(), mesh, s);
         }
     }
 
