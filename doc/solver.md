@@ -168,14 +168,16 @@ This gives a simple measure of how well incompressibility is being enforced.
 The Poisson equation is solved with repeated explicit stencil updates. For each cell,
 
 $$
-p_{i,j,k}^{new} =
+p_{i,j,k}^{\text{new}} =
 \frac{
-\dfrac{p_{i-1,j,k}+p_{i+1,j,k}}{\Delta x^2} +
-\dfrac{p_{i,j-1,k}+p_{i,j+1,k}}{\Delta y^2} +
-\dfrac{p_{i,j,k-1}+p_{i,j,k+1}}{\Delta z^2}
+\frac{p_{i-1,j,k}+p_{i+1,j,k}}{\Delta x^2} +
+\frac{p_{i,j-1,k}+p_{i,j+1,k}}{\Delta y^2} +
+\frac{p_{i,j,k-1}+p_{i,j,k+1}}{\Delta z^2}
 -
-\left(\dfrac{\rho}{\Delta t}\nabla\cdot\mathbf{u}^*\right)_{i,j,k}
-}{2/\Delta x^2 + 2/\Delta y^2 + 2/\Delta z^2 }.
+\left(\frac{\rho}{\Delta t}\nabla\cdot\mathbf{u}^*\right)_{i,j,k}
+}{
+\frac{2}{\Delta x^2} + \frac{2}{\Delta y^2} + \frac{2}{\Delta z^2}
+}
 $$
 
 This is a simple Jacobi-style relaxation. The number of iterations is fixed by `pressure_iters`.
