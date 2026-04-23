@@ -1,6 +1,6 @@
-# Mesh manual
+# Mesh
 
-## Purpose
+## Definition
 
 `Mesh` defines a uniform 3D Cartesian grid over a rectangular domain. It stores:
 
