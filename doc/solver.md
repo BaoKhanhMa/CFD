@@ -27,16 +27,16 @@ $$
 
 Here:
 
-- $$\mathbf{u} = (u,v,w)\$$ is velocity,
-- $$p$$ is pressure,
-- $$\\rho\$$ is density,
-- $$\\nu\$$ is kinematic viscosity.
+- $\mathbf{u} = (u,v,w)$ is velocity,
+- $p$ is pressure,
+- $\rho$ is density,
+- $\nu$ is kinematic viscosity.
 
 The solver settings expose the main numerical and physical parameters:
 
-- `dt` : time step \(\Delta t\)
-- `rho` : density \(\rho\)
-- `nu` : kinematic viscosity \(\nu\)
+- `dt` : time step $\Delta t$
+- `rho` : density $\rho$
+- `nu` : kinematic viscosity $\nu$
 - `pressure_iters` : number of Poisson iterations per time step
 
 ## Boundary conditions
@@ -49,7 +49,7 @@ $$
 \mathbf{u} = (0,0,0).
 $$
 
-The top face $$((z = L_z)$$ is a moving lid with unit tangential velocity:
+The top face $(z = L_z)$ is a moving lid with unit tangential velocity:
 
 $$
 u = 1, \qquad v = 0, \qquad w = 0.
@@ -61,7 +61,7 @@ This boundary condition injects momentum into the cavity and generates the recir
 
 ### 1. Intermediate velocity
 
-The code first computes an intermediate state \(\mathbf{u}^*\) without the pressure-gradient term:
+The code first computes an intermediate state $\mathbf{u}^*$ without the pressure-gradient term:
 
 $$
 \frac{\mathbf{u}^* - \mathbf{u}^n}{\Delta t}
@@ -107,7 +107,7 @@ All operators are evaluated on a uniform cell-centered mesh.
 
 ### Laplacian
 
-For a scalar field \(\phi\), the code uses the standard second-order central form:
+For a scalar field $\phi$, the code uses the standard second-order central form:
 
 $$
 \nabla^2 \phi \approx
@@ -196,9 +196,11 @@ In compact notation:
 $$
 \mathbf{u}^* \leftarrow \text{advect-diffuse}(\mathbf{u}^n),
 $$
+
 $$
 p^{n+1} \leftarrow \text{solve Poisson}(\nabla\cdot\mathbf{u}^*),
 $$
+
 $$
 \mathbf{u}^{n+1} \leftarrow \mathbf{u}^* - \frac{\Delta t}{\rho}\nabla p^{n+1}.
 $$
