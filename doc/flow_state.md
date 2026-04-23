@@ -1,4 +1,4 @@
-# FlowState manual
+# FlowState
 
 ## Purpose
 
@@ -31,9 +31,9 @@ Construction allocates all four fields on the same mesh and initializes them to 
 
 Together, the velocity components form the vector field
 
-\[
+$$
 \mathbf{u} = (u,v,w).
-\]
+$$
 
 The pressure field \(p\) is used during the projection step to reduce the velocity divergence and enforce the incompressibility constraint.
 
@@ -42,9 +42,9 @@ In other words:
 - `u`, `v`, `w` carry the momentum state,
 - `p` acts as the correction field that pushes the velocity toward
 
-\[
+$$
 \nabla \cdot \mathbf{u} = 0.
-\]
+$$
 
 ## Why group the variables
 
